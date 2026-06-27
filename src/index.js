@@ -1,20 +1,34 @@
 import "./style.css";
-import { createTodo } from "./todo";
+
 import { createProject } from "./project";
-import { renderProjects, renderTodos } from "./ui";
+import { createTodo } from "./todo";
+
+import {
+    renderProjects,
+    renderTodos
+} from "./ui";
+
 import {
     saveProjects,
     loadProjects
 } from "./storage";
 
+import {
+    openModal,
+    closeModal,
+    getFormData,
+    setProjectTitle,
+    setupModalEvents,
+    form
+} from "./dom";
 
 let projects = loadProjects();
 
 if (projects.length === 0) {
 
-    const defaultProject = createProject("Default");
-
-    projects.push(defaultProject);
+    projects.push(
+        createProject("Default")
+    );
 
 }
 
@@ -24,13 +38,18 @@ function updateUI() {
 
     saveProjects(projects);
 
+    setProjectTitle(currentProject.name);
+
     renderProjects(
         projects,
         currentProject,
         selectProject
     );
 
-    renderTodos(currentProject);
+    renderTodos(
+        currentProject,
+        updateUI
+    );
 
 }
 
@@ -50,16 +69,20 @@ document
     .addEventListener("click", () => {
 
         const name =
-            prompt("Project Name:");
+            prompt("Project Name");
 
-        if (!name) return;
+        if (!name || name.trim() === "") {
 
-        const newProject =
-            createProject(name);
+            return;
 
-        projects.push(newProject);
+        }
 
-        currentProject = newProject;
+        const project =
+            createProject(name.trim());
+
+        projects.push(project);
+
+        currentProject = project;
 
         updateUI();
 
@@ -69,19 +92,28 @@ document
     .getElementById("add-todo-btn")
     .addEventListener("click", () => {
 
-        const title =
-            prompt("Todo Title");
+        openModal();
 
-        if (!title) return;
+    });
 
-        const description =
-            prompt("Description");
+form.addEventListener(
+    "submit",
+    event => {
 
-        const dueDate =
-            prompt("Due Date (YYYY-MM-DD)");
+        event.preventDefault();
 
-        const priority =
-            prompt("Priority (Low, Medium, High)");
+        const {
+            title,
+            description,
+            dueDate,
+            priority
+        } = getFormData();
+
+        if (title.trim() === "") {
+
+            return;
+
+        }
 
         currentProject.todos.push(
 
@@ -89,13 +121,18 @@ document
                 title,
                 description,
                 dueDate,
-                priority || "Low"
+                priority
             )
 
         );
 
+        closeModal();
+
         updateUI();
 
-    });
+    }
+);
+
+setupModalEvents();
 
 updateUI();

@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>Todo List</title>
+
 </head>
 
 <body>
 
-    <div id="app">
+    <div class="app">
 
         <!-- Sidebar -->
+
         <aside class="sidebar">
 
             <h2>Projects</h2>
+
+            <ul id="project-list"></ul>
 
             <button id="add-project-btn">
                 + New Project
             </button>
 
-            <ul id="project-list">
-
-                <li class="active">
-                    Default
-                </li>
-
-            </ul>
-
         </aside>
 
         <!-- Main -->
-        <main class="main-content">
+
+        <main class="main">
 
             <header>
 
-                <h1>Todo List</h1>
+                <h1 id="project-title">
+                    Default
+                </h1>
 
                 <button id="add-todo-btn">
                     + Add Todo
@@ -42,35 +47,7 @@
 
             </header>
 
-            <section id="todo-container">
-
-                <!-- Example Card -->
-
-                <div class="todo-card">
-
-                    <div>
-
-                        <h3>Study JavaScript</h3>
-
-                        <p>Finish Todo Project</p>
-
-                    </div>
-
-                    <div class="todo-info">
-
-                        <span class="priority high">
-                            High
-                        </span>
-
-                        <span>
-                            30 Jun 2026
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </section>
+            <div id="todo-container"></div>
 
         </main>
 
@@ -78,45 +55,57 @@
 
     <!-- Modal -->
 
-    <div id="todo-modal" class="modal hidden">
+    <dialog id="todo-dialog">
 
-        <div class="modal-content">
+        <form id="todo-form">
 
-            <h2>Add Todo</h2>
+            <h2>New Todo</h2>
 
-            <form id="todo-form">
+            <input
+                id="title"
+                type="text"
+                placeholder="Title"
+                required>
 
-                <input
-                    type="text"
-                    placeholder="Title"
-                    required
-                >
+            <textarea
+                id="description"
+                placeholder="Description">
+            </textarea>
 
-                <textarea
-                    placeholder="Description"
-                ></textarea>
+            <input
+                id="dueDate"
+                type="date">
 
-                <input type="date">
+            <select id="priority">
 
-                <select>
+                <option>Low</option>
 
-                    <option>Low</option>
+                <option>Medium</option>
 
-                    <option>Medium</option>
+                <option>High</option>
 
-                    <option>High</option>
+            </select>
 
-                </select>
+            <div class="modal-buttons">
 
                 <button type="submit">
-                    Save Todo
+                    Save
                 </button>
 
-            </form>
+                <button
+                    type="button"
+                    id="cancel-btn">
 
-        </div>
+                    Cancel
 
-    </div>
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
 
 </body>
+
 </html>

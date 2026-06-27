@@ -4,12 +4,21 @@ export function createTodo(
     dueDate,
     priority
 ) {
+
     return {
+
         id: crypto.randomUUID(),
+
         title,
+
         description,
+
         dueDate,
+
         priority,
+
         completed: false
+
     };
+
 }

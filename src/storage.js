@@ -15,7 +15,9 @@ export function loadProjects() {
         localStorage.getItem(STORAGE_KEY);
 
     if (!data) {
+
         return [];
+
     }
 
     return JSON.parse(data);
