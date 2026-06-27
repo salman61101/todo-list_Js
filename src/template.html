@@ -8,6 +8,115 @@
 
 <body>
 
-</body>
+    <div id="app">
 
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <h2>Projects</h2>
+
+            <button id="add-project-btn">
+                + New Project
+            </button>
+
+            <ul id="project-list">
+
+                <li class="active">
+                    Default
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <!-- Main -->
+        <main class="main-content">
+
+            <header>
+
+                <h1>Todo List</h1>
+
+                <button id="add-todo-btn">
+                    + Add Todo
+                </button>
+
+            </header>
+
+            <section id="todo-container">
+
+                <!-- Example Card -->
+
+                <div class="todo-card">
+
+                    <div>
+
+                        <h3>Study JavaScript</h3>
+
+                        <p>Finish Todo Project</p>
+
+                    </div>
+
+                    <div class="todo-info">
+
+                        <span class="priority high">
+                            High
+                        </span>
+
+                        <span>
+                            30 Jun 2026
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- Modal -->
+
+    <div id="todo-modal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <h2>Add Todo</h2>
+
+            <form id="todo-form">
+
+                <input
+                    type="text"
+                    placeholder="Title"
+                    required
+                >
+
+                <textarea
+                    placeholder="Description"
+                ></textarea>
+
+                <input type="date">
+
+                <select>
+
+                    <option>Low</option>
+
+                    <option>Medium</option>
+
+                    <option>High</option>
+
+                </select>
+
+                <button type="submit">
+                    Save Todo
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
 </html>
