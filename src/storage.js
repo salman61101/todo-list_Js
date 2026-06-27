@@ -1,7 +1,9 @@
+const STORAGE_KEY = "todo-projects";
+
 export function saveProjects(projects) {
 
     localStorage.setItem(
-        "projects",
+        STORAGE_KEY,
         JSON.stringify(projects)
     );
 
@@ -10,10 +12,12 @@ export function saveProjects(projects) {
 export function loadProjects() {
 
     const data =
-        localStorage.getItem("projects");
+        localStorage.getItem(STORAGE_KEY);
 
-    return data
-        ? JSON.parse(data)
-        : [];
+    if (!data) {
+        return [];
+    }
+
+    return JSON.parse(data);
 
 }
